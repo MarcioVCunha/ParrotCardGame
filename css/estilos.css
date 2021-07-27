@@ -17,14 +17,15 @@ h1{
 }
 
 .jogo{
-    margin: 10vh auto 0 auto;
+    margin: 5vh auto 0 auto;
 
-    width: 70vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    width: 65vw;
 
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-column-gap: 5vw;
+    grid-row-gap: 10px;
+    justify-content: center;
 }
 
 .carta{
@@ -39,11 +40,31 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin: 0 0 40px 40px
 }
 
 .carta img{
     width: 100px;
     height: 100px;
+}
+
+.sumir{
+    display: none;
+}
+
+@media (max-width: 614px){
+    h1{
+        font-size: 36px;
+    }
+
+    .jogo{
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carta{
+        margin-bottom: 20px;
+    }
 }
