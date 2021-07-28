@@ -1,6 +1,5 @@
 let numeroCartas = 0;
-let esperar = false;
-let cartasReveladas;
+jogo = document.querySelector('.jogo');
 
 function validar(){
     let cartasSuficientes = Boolean(numeroCartas >= 4 && numeroCartas <= 14);
@@ -18,7 +17,6 @@ function validar(){
 function criarJogo(){
     let contador = 0;
     let lista = '';
-    let cartasJogaveis = document.querySelector('.jogo');
 
     while(contador < numeroCartas){
         lista += ('<li class="carta" onclick="mudarCarta(this);"> <img src="assets/front.png" alt="Carta do jogo"> </li>')
@@ -26,32 +24,16 @@ function criarJogo(){
         contador += 1;
     }
 
-    cartasJogaveis.innerHTML = lista;
+    jogo.innerHTML = lista;
+    jogo.classList.remove('sumir');
 }
 
-function mudarCarta(elemento){
-    cartasReveladas = document.getElementsByClassName("revelado");
 
 
-    if(esperar === false){
-        elemento.innerHTML = '<img src="assets/bobrossparrot.gif" alt="Carta do jogo">';
-        elemento.classList.add('revelado');
-    }
+/* minhaArray.sort(comparador);
 
-    if(cartasReveladas.length === 2){
-        esperar = true;
-
-        setTimeout(conferirCartasViradas, 1000);
-    }
-}
-
-function conferirCartasViradas(){
-    while(cartasReveladas.length !== 0){
-        cartasReveladas[0].innerHTML = '<img src="assets/front.png" alt="Carta do jogo">';
-        cartasReveladas[0].classList.remove("revelado");
-    }
-
-    esperar = false;
-}
+function comparador() { 
+	return Math.random() - 0.5; 
+} */
 
 validar();
