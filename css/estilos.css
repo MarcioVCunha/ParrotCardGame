@@ -47,10 +47,6 @@ h1{
     height: 100px;
 }
 
-.sumir{
-    display: none;
-}
-
 @media (max-width: 614px){
     h1{
         font-size: 36px;
