@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-.sumir{
-    display: none;
-}
-
 body{
     background-color: rgb(238, 249, 191);
 }
@@ -49,6 +45,10 @@ h1{
 .carta img{
     width: 100px;
     height: 100px;
+}
+
+.sumir{
+    display: none;
 }
 
 @media (max-width: 614px){
