@@ -1,6 +1,7 @@
 let numeroCartas = 0;
 let numeroCartasViradas = 0;
 let acertos = 0;
+let numeroDeJogadas = 0;
 let cartaAnterior;
 
 //Pegando os gifs em ordem aleatória
@@ -50,6 +51,8 @@ function mudarCarta(elemento){
     carta.querySelector('.back-face').classList.add('flipCard')
     elemento.classList.remove('flipCard');
 
+    numeroDeJogadas ++;
+
     validarAcerto(elemento, carta);
 }
 
@@ -63,6 +66,12 @@ function validarAcerto(elemento, carta){
     } else {
         if(cartaAnterior.innerHTML === elementBackFace.innerHTML){
             acertos ++;
+
+
+            if(acertos === numeroCartas/2){
+                alert(`Você ganhou em ${numeroDeJogadas} jogadas!`)
+            }
+
         } else {
             setTimeout(desvirar, 1000, elemento, carta, cartaAnterior);
         }
