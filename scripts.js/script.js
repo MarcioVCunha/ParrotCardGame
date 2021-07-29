@@ -1,10 +1,12 @@
 let numeroCartas = 0;
+let numeroCartasViradas = 0;
+let acertos = 0;
+let cartaAnterior;
 
 //Pegando os gifs em ordem aleatória
 let listaGifs = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.gif', 'metalparrot.gif', 'revertitparrot.gif', 'tripletsparrot.gif', 'unicornparrot.gif'].sort(comparador);
 
 const jogo = document.querySelector('.jogo');
-
 
 function validar(){
     let cartasSuficientes = Boolean(numeroCartas >= 4 && numeroCartas <= 14);
@@ -33,7 +35,7 @@ function criarJogo(){
     let lista = '';
 
     for(let i = 0; i < numeroCartas; i += 1){
-        lista += ('<div class="carta"> <div class="face" onclick="mudarCarta(this);"> <img src="assets/front.png" alt="Carta do jogo"> </div> <div class="face flipCard"> <img src="assets/bobrossparrot.gif"> </div> </div>')
+        lista += (`<div class="carta"> <div class="face front-face flipCard" onclick="mudarCarta(this);"> <img src="assets/front.png" alt="Carta do jogo"> </div> <div class="face back-face"> <img src="assets/${listaGifsFinal[i]}"> </div> </div>`)
     }
 
     jogo.innerHTML = lista;
@@ -45,9 +47,36 @@ function comparador() {
 
 function mudarCarta(elemento){
     let carta = elemento.parentNode;
-    carta.querySelector(".flipCard").classList.remove("flipCard");
+    carta.querySelector('.back-face').classList.add('flipCard')
+    elemento.classList.remove('flipCard');
 
-    elemento.classList.add("flipCard");
+    validarAcerto(elemento, carta);
+}
+
+function validarAcerto(elemento, carta){
+    let elementBackFace = elemento.parentNode.querySelector('.back-face');
+    
+    numeroCartasViradas ++;
+
+    if(numeroCartasViradas === 1){
+        cartaAnterior = elementBackFace;
+    } else {
+        if(cartaAnterior.innerHTML === elementBackFace.innerHTML){
+            acertos ++;
+        } else {
+            setTimeout(desvirar, 1000, elemento, carta, cartaAnterior);
+        }
+
+        numeroCartasViradas = 0;
+    }
+}
+
+function desvirar(elemento, carta, cartaAnterior){
+    carta.querySelector('.back-face').classList.remove('flipCard');
+    elemento.classList.add('flipCard');
+
+    cartaAnterior.classList.remove('flipCard');
+    cartaAnterior.parentNode.querySelector('.front-face').classList.add('flipCard');
 }
 
 validar();
