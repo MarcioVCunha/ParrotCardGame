@@ -33,7 +33,7 @@ function criarJogo(){
     let lista = '';
 
     for(let i = 0; i < numeroCartas; i += 1){
-        lista += ('<div class="carta"> <div class="front-face face" onclick="mudarCarta(this);"> <img src="assets/front.png" alt="Carta do jogo"> </div> <div class="back-face face"> <img src="assets/bobrossparrot.gif"> </div> </div>')
+        lista += ('<div class="carta"> <div class="face" onclick="mudarCarta(this);"> <img src="assets/front.png" alt="Carta do jogo"> </div> <div class="face flipCard"> <img src="assets/bobrossparrot.gif"> </div> </div>')
     }
 
     jogo.innerHTML = lista;
@@ -44,6 +44,9 @@ function comparador() {
 }
 
 function mudarCarta(elemento){
+    let carta = elemento.parentNode;
+    carta.querySelector(".flipCard").classList.remove("flipCard");
+
     elemento.classList.add("flipCard");
 }
 
